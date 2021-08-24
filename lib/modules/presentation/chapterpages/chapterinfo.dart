@@ -106,7 +106,7 @@ class _ChapterInfoState extends State<ChapterInfo> {
                       TextAndDescription(
                         textAbove: 'Summary:',
                         textBelow:
-                            '  ${controller.chapterUnit.summary.replaceAll("<p>", "  ").replaceAll("</p>", "").replaceAll("</b>", "").replaceAll("<b>", "").replaceAll("<h5>", " ").replaceAll("</h5>", "").replaceAll("</i>", "").replaceAll("<i>", " ")}',
+                            '  ${controller.chapterUnit.summary.replaceAll("<p>", "  ").replaceAll("</p>", "").replaceAll("</b>", "").replaceAll("<b>", "").replaceAll("<br>", "").replaceAll("<h5>", " ").replaceAll("</h5>", "").replaceAll("</i>", "").replaceAll("<i>", " ")}',
                       ),
                       SizedBox(
                         height: 20,

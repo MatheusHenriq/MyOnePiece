@@ -54,10 +54,10 @@ class _ChooseChapterState extends State<ChooseChapter> {
                 backgroundColor: Theme.of(context).primaryColor,
                 title: controller.isSearching.value == true
                     ? Container(
-                        width: 250,
+                        width: 300,
                         child: SearchWidget(
                           text: query,
-                          hintText: 'Choose a chapter',
+                          hintText: 'Search by chapter...',
                           onChanged: searchBook,
                         ),
                       )
@@ -65,7 +65,7 @@ class _ChooseChapterState extends State<ChooseChapter> {
                         'My One Piece',
                         style: Theme.of(context)
                             .textTheme
-                            .headline5
+                            .headline3
                             .apply(color: Colors.white),
                       ),
                 centerTitle: true,
@@ -74,62 +74,70 @@ class _ChooseChapterState extends State<ChooseChapter> {
                       ? SizedBox()
                       : IconButton(
                           onPressed: () {
-                            controller.searchingToggle();
+                            controller.searchingToggle(null);
                           },
                           icon: Icon(Icons.search, color: Colors.white),
                         )
                 ],
               ),
               backgroundColor: Theme.of(context).highlightColor,
-              body: Column(
-                children: [
-                  Container(
-                    height: 200,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 20.0,
-                          spreadRadius: 10.0,
-                          color: Theme.of(context).accentColor,
-                        ),
-                      ],
+              body: GestureDetector(
+                onTap: () {
+                  if (query == '') {
+                    controller.searchingToggle(false);
+                    chapters = controller.chapterList;
+                  }
+                },
+                child: Column(
+                  children: [
+                    Container(
+                      height: 200,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 20.0,
+                            spreadRadius: 10.0,
+                            color: Theme.of(context).accentColor,
+                          ),
+                        ],
+                      ),
+                      child: Image.asset(
+                        'assets/images/onepiecegang.jpg',
+                        fit: BoxFit.fill,
+                      ),
                     ),
-                    child: Image.asset(
-                      'assets/images/onepiecegang.jpg',
-                      fit: BoxFit.fill,
+                    SizedBox(
+                      height: 15,
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: chapters.length == 0
-                          ? controller.chapterList.length
-                          : chapters.length,
-                      itemBuilder: (ctx, index) {
-                        return ChapterLessInfo(
-                          title: chapters.length == 0
-                              ? controller.chapterList[index].title
-                              : chapters[index].title,
-                          chapter: chapters.length == 0
-                              ? controller.chapterList[index].id
-                              : chapters[index].id,
-                          onTap: () {
-                            Get.to(
-                              ChapterInfo(
-                                chapterId: (chapters.length == 0
-                                    ? controller.chapterList[index].id
-                                    : chapters[index].id),
-                              ),
-                            );
-                          },
-                        );
-                      },
-                    ),
-                  )
-                ],
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: chapters.length == 0
+                            ? controller.chapterList.length
+                            : chapters.length,
+                        itemBuilder: (ctx, index) {
+                          return ChapterLessInfo(
+                            title: chapters.length == 0
+                                ? controller.chapterList[index].title
+                                : chapters[index].title,
+                            chapter: chapters.length == 0
+                                ? controller.chapterList[index].id
+                                : chapters[index].id,
+                            onTap: () {
+                              Get.to(
+                                ChapterInfo(
+                                  chapterId: (chapters.length == 0
+                                      ? controller.chapterList[index].id
+                                      : chapters[index].id),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           );

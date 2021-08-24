@@ -49,8 +49,13 @@ class ChooseChapterController extends GetxController with StateMixin {
   RxBool get isSearching => _isSearching;
   bool get chapterunitload => _chapterunitload;
 
-  searchingToggle() {
-    _isSearching.toggle();
+  searchingToggle(bool state) {
+    if (state == null) {
+      _isSearching.toggle();
+    } else {
+      _isSearching = state.obs;
+    }
+
     update(['searching']);
   }
 

@@ -49,7 +49,7 @@ class _SearchWidgetState extends State<SearchWidget> {
               ? GestureDetector(
                   child: Icon(Icons.close, color: style.color),
                   onTap: () {
-                    controllerSearch = controllerSearch.searchingToggle();
+                    controllerSearch = controllerSearch.searchingToggle(null);
                     controller.clear();
                     widget.onChanged('');
                     FocusScope.of(context).requestFocus(FocusNode());
