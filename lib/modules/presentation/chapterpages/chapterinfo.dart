@@ -111,11 +111,13 @@ class _ChapterInfoState extends State<ChapterInfo> {
                       SizedBox(
                         height: 20,
                       ),
-                      TextAndDescription(
-                        textAbove: 'Cover Characters:',
-                        textBelow:
-                            '  ${controller.chapterUnit.cover_characters}',
-                      ),
+                      controller.chapterUnit.cover_characters == ''
+                          ? SizedBox()
+                          : TextAndDescription(
+                              textAbove: 'Cover Characters:',
+                              textBelow:
+                                  '  ${controller.chapterUnit.cover_characters}',
+                            ),
                     ],
                   ),
                 ),
