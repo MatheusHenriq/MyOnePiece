@@ -148,7 +148,7 @@ class _ChooseChapterState extends State<ChooseChapter> {
     final chapters = controller.chapterList.where((chapter) {
       final chapterId = chapter.id.toString();
       final searchChapterId = id;
-      return chapterId.contains(RegExp('^${searchChapterId}\$'));
+      return chapterId.contains(RegExp('^$searchChapterId\$'));
     }).toList();
 
     setState(() {

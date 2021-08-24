@@ -63,6 +63,11 @@ class _SearchWidgetState extends State<SearchWidget> {
         ),
         style: Theme.of(context).textTheme.bodyText1.apply(color: Colors.black),
         onChanged: widget.onChanged,
+        onSubmitted: (String value) {
+          if (value == '') {
+            controllerSearch.searchingToggle(false);
+          }
+        },
       ),
     );
   }
