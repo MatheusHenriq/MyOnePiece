@@ -21,24 +21,22 @@ class ChooseChapterController extends GetxController with StateMixin {
   RxBool _isSearching = false.obs;
   bool get chapterload => _chapterload;
 
-  Future getChapters() async {
+  Future<bool> getChapters() async {
     var validator = await usercasedataAllChapter();
+
     if (validator.isRight()) {
       var data = await datasourcedataAllChapter.search();
       if (data.isRight()) {
         var datalogin = await externaldataAllChapter.getSearch();
         if (datalogin != null) {
           chapterList = datalogin;
+          _chapterload = true;
+          return true;
         }
       }
     }
-    if (chapterList.length > 0) {
-      _chapterload = true;
-      update(['chapterload']);
-    } else {
-      _chapterload = false;
-      update(['chapterload']);
-    }
+    update(['chapterload']);
+    return false;
   }
 
   final externaldataSpecificChapter = Get.find<SearchDatasource>();
@@ -89,7 +87,7 @@ class ChooseChapterController extends GetxController with StateMixin {
       Get.changeTheme(appLightTheme);
     }
     PersistDataSharedPreferences.setThemeMode(_isDarkMode.value);
-    update(['thememode']);
+    update(['searching']);
   }
 
   getSharedPrefereces() async {
@@ -103,6 +101,6 @@ class ChooseChapterController extends GetxController with StateMixin {
     } else {
       Get.changeTheme(appLightTheme);
     }
-    update(['thememode']);
+    update(['searching']);
   }
 }

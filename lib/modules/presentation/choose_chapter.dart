@@ -21,7 +21,7 @@ class _ChooseChapterState extends State<ChooseChapter> {
   @override
   void initState() {
     chapters = controller.chapterList;
-
+    controller.getSharedPrefereces();
     super.initState();
   }
 
