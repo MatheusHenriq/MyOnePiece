@@ -21,7 +21,11 @@ class _ChooseChapterState extends State<ChooseChapter> {
   @override
   void initState() {
     chapters = controller.chapterList;
-    controller.getSharedPrefereces();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        controller.getSharedPrefereces();
+      });
+    });
     super.initState();
   }
 
@@ -32,7 +36,7 @@ class _ChooseChapterState extends State<ChooseChapter> {
       DeviceOrientation.portraitDown,
     ]);
 
-    return GetBuilder<ChooseChapterController>(
+    return GetBuilder(
         id: 'searching',
         init: controller,
         builder: (_) {
@@ -77,7 +81,7 @@ class _ChooseChapterState extends State<ChooseChapter> {
                             controller.searchingToggle(null);
                           },
                           icon: Icon(Icons.search, color: Colors.white),
-                        )
+                        ),
                 ],
               ),
               backgroundColor: Theme.of(context).highlightColor,

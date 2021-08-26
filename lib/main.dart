@@ -13,7 +13,7 @@ void main() async {
     title: 'One Piece Chapters',
     initialRoute: Routes.SPLASH,
     darkTheme: appDarkTheme,
-    theme: appDarkTheme,
+    theme: appLightTheme,
     getPages: AppPages.routes,
   ));
 }

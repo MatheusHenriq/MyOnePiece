@@ -15,7 +15,12 @@ class _PageChooserState extends State<PageChooser> {
   final ChooseChapterController controller = Get.put(ChooseChapterController());
   @override
   void initState() {
-    controller.getChapters();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        controller.getChapters();
+      });
+    });
+
     super.initState();
   }
 
