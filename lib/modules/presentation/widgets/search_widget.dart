@@ -38,6 +38,7 @@ class _SearchWidgetState extends State<SearchWidget> {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
       child: TextField(
+        autofocus: true,
         controller: controller,
         keyboardType: TextInputType.number,
         maxLength: 3,
